@@ -5,6 +5,8 @@ databricks-sdk-go is an unofficial Databricks SDK for the Go programming languag
 * Clusters API
 * Workspace API
 
+> **All the credits to [betabandido](https://github.com/betabandido/databricks-sdk-go). I just fork the repository and make some changes to work as I think my terraform scripts should work.**
+
 ## Installation
 
 To install the SDK run the following command:
