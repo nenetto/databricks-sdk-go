@@ -42,6 +42,7 @@ func (c *Endpoint) CreateSync(request *models.ClustersCreateRequest) (
 
 	err = c.executeSync(opFunc, models.RUNNING, []models.ClustersClusterState{
 		models.PENDING,
+		models.RUNNING,
 	})
 
 	return
@@ -101,6 +102,8 @@ func (c *Endpoint) DeleteSync(request *models.ClustersDeleteRequest) error {
 		models.RESTARTING,
 		models.RESIZING,
 		models.TERMINATING,
+		models.TERMINATED,
+		models.RUNNING,
 	})
 }
 
