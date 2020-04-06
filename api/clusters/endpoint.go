@@ -147,29 +147,9 @@ func (c *Endpoint) Pin(request *models.ClustersEditRequest) error {
 	return err
 }
 
-func (c *Endpoint) PinSync(request *models.ClustersEditRequest) error {
-	opFunc := func() (*string, error) { return &request.ClusterId, c.Pin(request) }
-	return c.executeSync(opFunc, models.TERMINATED, []models.ClustersClusterState{
-		models.PENDING,
-		models.RESTARTING,
-		models.RESIZING,
-		models.TERMINATING,
-	})
-}
-
 func (c *Endpoint) Unpin(request *models.ClustersEditRequest) error {
 	_, err := c.Client.Query("POST", "clusters/unpin", request)
 	return err
-}
-
-func (c *Endpoint) UnpinSync(request *models.ClustersEditRequest) error {
-	opFunc := func() (*string, error) { return &request.ClusterId, c.Unpin(request) }
-	return c.executeSync(opFunc, models.TERMINATED, []models.ClustersClusterState{
-		models.PENDING,
-		models.RESTARTING,
-		models.RESIZING,
-		models.TERMINATING,
-	})
 }
 
 func (c *Endpoint) executeSync(
