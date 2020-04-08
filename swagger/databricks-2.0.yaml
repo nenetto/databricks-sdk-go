@@ -605,15 +605,8 @@ definitions:
         type: string
       message:
         type: string
-  ### InstanceProfiles ###
+  ### Instanceprofiles ###
   # Requests and responses
-  InstaceprofileAddRequest:
-    required:
-      - instance_profile_arn
-    properties:
-      instance_profile_arn: string
-      skip_validation:
-        type: bool
   InstaceprofileListResponse:
     properties:
       instance_profiles:
@@ -626,3 +619,11 @@ definitions:
     properties:
       instance_profile_arn:
         type: string
+  InstaceprofileAddRequest:
+    required:
+      - instance_profile_arn
+    properties:
+      instance_profile_arn:
+        type: string
+      skip_validation:
+        type: bool
