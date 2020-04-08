@@ -3,9 +3,9 @@ package main
 import (
 	"encoding/json"
 	"flag"
+	"fmt"
 	"github.com/nenetto/databricks-sdk-go/api/instanceprofile"
 	"github.com/nenetto/databricks-sdk-go/client"
-	"github.com/nenetto/databricks-sdk-go/models"
 	"io/ioutil"
 )
 
@@ -29,13 +29,24 @@ func main() {
 		Client: cl,
 	}
 
-	request := models.InstanceprofileAddRequest{
-		InstanceProfileArn: secrets.InstanceprofileArn,
-	}
+	//request := models.InstanceprofileAddRequest{
+	//	InstanceProfileArn: secrets.InstanceprofileArn,
+	//}
+	//
+	//errAdd := endpoint.Add(&request)
+	//if errAdd != nil {
+	//	panic(errAdd)
+	//}
 
-	errAdd := endpoint.Add(&request)
-	if errAdd != nil {
-		panic(errAdd)
+	resp, err := endpoint.List()
+	fmt.Println(resp.InstanceProfiles[0].InstanceProfileArn)
+	fmt.Println(err==nil)
+	if err == nil {
+		for _, ip := range resp.InstanceProfiles {
+			fmt.Println(ip.InstanceProfileArn)
+		}
+	}else {
+		print(err)
 	}
 
 
