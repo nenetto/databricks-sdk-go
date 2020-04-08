@@ -24,5 +24,5 @@ package models
 
 type InstanceprofileListResponse struct {
 
-	InstanceProfiles []string `json:"instance_profiles,omitempty"`
+	InstanceProfiles []InstanceprofileInfo `json:"instance_profiles,omitempty"`
 }
