@@ -607,19 +607,19 @@ definitions:
         type: string
   ### Instanceprofiles ###
   # Requests and responses
-  InstaceprofileListResponse:
+  InstanceprofileListResponse:
     properties:
       instance_profiles:
         type: array
         items:
           type: string
-  InstaceprofileRemoveRequest:
+  InstanceprofileRemoveRequest:
     required:
       - instance_profile_arn
     properties:
       instance_profile_arn:
         type: string
-  InstaceprofileAddRequest:
+  InstanceprofileAddRequest:
     required:
       - instance_profile_arn
     properties:
