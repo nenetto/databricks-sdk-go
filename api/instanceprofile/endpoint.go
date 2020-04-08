@@ -25,7 +25,8 @@ func (c *Endpoint) List() (*models.InstaceprofileListResponse, error) {
 	return &resp, nil
 }
 
-func (c *Endpoint) Add(request *models.InstaceprofileListRequest) error {
+
+func (c *Endpoint) Add(request *models.InstaceprofileAddRequest) error {
 	_, err := c.Client.Query("POST", "instance-profiles/add", request)
 	return err
 }
