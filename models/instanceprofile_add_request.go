@@ -22,7 +22,7 @@
 
 package models
 
-type InstaceprofileListResponse struct {
+type InstanceprofileAddRequest struct {
 
-	InstanceProfiles []string `json:"instance_profiles,omitempty"`
+	InstanceProfileArn string `json:"instance_profile_arn,omitempty"`
 }

@@ -22,7 +22,7 @@
 
 package models
 
-type InstaceprofileRemoveRequest struct {
+type InstanceprofileListResponse struct {
 
-	InstanceProfileArn string `json:"instance_profile_arn,omitempty"`
+	InstanceProfiles []string `json:"instance_profiles,omitempty"`
 }

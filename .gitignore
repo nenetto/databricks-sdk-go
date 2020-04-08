@@ -10,3 +10,5 @@ models/docs/
 models/.swagger-codegen-ignore
 
 models/.travis.yml
+
+examples/secrets.json
