@@ -612,7 +612,7 @@ definitions:
       instance_profiles:
         type: array
         items:
-          type: string
+          type: $ref: '#/definitions/InstanceProfileInfo'
   InstanceprofileRemoveRequest:
     required:
       - instance_profile_arn
@@ -626,4 +626,11 @@ definitions:
       instance_profile_arn:
         type: string
       skip_validation:
+        type: bool
+  # Data objects
+  InstanceprofileInfo:
+    properties:
+      instance_profile_arn:
+        type: string
+      is_meta_instance_profile:
         type: bool
