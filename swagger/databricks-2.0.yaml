@@ -248,6 +248,18 @@ definitions:
     properties:
       cluster_id:
         type: string
+  ClusterPinRequest:
+    required:
+      - cluster_id
+    properties:
+      cluster_id:
+        type: string
+  ClusterUnpinRequest:
+    required:
+      - cluster_id
+    properties:
+      cluster_id:
+        type: string
   ClustersGetResponse:
     allOf:
       # TODO: this response is slightly different w.r.t. ClusterInfo
@@ -592,4 +604,25 @@ definitions:
       error_code:
         type: string
       message:
+        type: string
+  ### InstanceProfiles ###
+  # Requests and responses
+  InstaceprofileAddRequest:
+    required:
+      - instance_profile_arn
+    properties:
+      instance_profile_arn: string
+      skip_validation:
+        type: bool
+  InstaceprofileListResponse:
+    properties:
+      instance_profiles:
+        type: array
+        items:
+          type: string
+  InstaceprofileRemoveRequest:
+    required:
+      - instance_profile_arn
+    properties:
+      instance_profile_arn:
         type: string

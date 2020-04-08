@@ -142,12 +142,12 @@ func (c *Endpoint) List() (*models.ClustersListResponse, error) {
 	return &resp, nil
 }
 
-func (c *Endpoint) Pin(request *models.ClustersEditRequest) error {
+func (c *Endpoint) Pin(request *models.ClusterPinRequest) error {
 	_, err := c.Client.Query("POST", "clusters/pin", request)
 	return err
 }
 
-func (c *Endpoint) Unpin(request *models.ClustersEditRequest) error {
+func (c *Endpoint) Unpin(request *models.ClusterUnpinRequest) error {
 	_, err := c.Client.Query("POST", "clusters/unpin", request)
 	return err
 }
