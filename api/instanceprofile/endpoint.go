@@ -2,6 +2,7 @@ package instanceprofile
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/nenetto/databricks-sdk-go/client"
 	"github.com/nenetto/databricks-sdk-go/models"
 )
@@ -11,15 +12,16 @@ type Endpoint struct {
 }
 
 func (c *Endpoint) List() (*models.InstanceprofileListResponse, error) {
+	resp := models.InstanceprofileListResponse{}
 	bytes, err := c.Client.Query("GET", "instance-profiles/list", nil)
 	if err != nil {
-		return nil, err
+		return &resp, err
 	}
 
-	resp := models.InstanceprofileListResponse{}
 	err = json.Unmarshal(bytes, &resp)
 	if err != nil {
-		return nil, err
+		fmt.Println(err)
+		return &resp, err
 	}
 
 	return &resp, nil
@@ -27,7 +29,8 @@ func (c *Endpoint) List() (*models.InstanceprofileListResponse, error) {
 
 
 func (c *Endpoint) Add(request *models.InstanceprofileAddRequest) error {
-	_, err := c.Client.Query("POST", "instance-profiles/add", request)
+	responseBytes, err := c.Client.Query("POST", "instance-profiles/add", request)
+	print(responseBytes)
 	return err
 }
 
