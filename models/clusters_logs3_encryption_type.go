@@ -9,7 +9,10 @@
 
 package models
 
-type ClustersClusterLogConf struct {
-	Dbfs *ClustersDbfsStorageInfo `json:"dbfs,omitempty"`
-	S3 *ClustersS3StorageInfo `json:"s3,omitomitempty"`
-}
+type ClustersLogS3EncryptionType string
+
+// List of ClustersAwsAvailability
+const (
+	SSES3               ClustersLogS3EncryptionType = "sse-s3"
+	SSEKMS          ClustersLogS3EncryptionType = "sse-k"
+)
