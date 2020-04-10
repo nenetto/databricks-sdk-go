@@ -61,12 +61,12 @@ func (c *Endpoint) EditSync(request *models.ClustersEditRequest) error {
 		return err
 	}
 
-	if *state == models.TERMINATED {
-		return nil
+	if *state != models.TERMINATED {
+		return fmt.Errorf("cannot change cluster %s in state (%s)", request.ClusterId, *state)
 	}
 
-	return c.executeSync(opFunc, models.RUNNING, []models.ClustersClusterState{
-		models.RESTARTING,
+	return c.executeSync(opFunc, models.TERMINATED, []models.ClustersClusterState{
+		models.RUNNING,
 	})
 }
 
