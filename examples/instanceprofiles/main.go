@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"github.com/nenetto/databricks-sdk-go/api/instanceprofile"
 	"github.com/nenetto/databricks-sdk-go/client"
+	"github.com/nenetto/databricks-sdk-go/models"
 	"io/ioutil"
 )
 
@@ -16,6 +17,7 @@ func main() {
 	//flag.Lookup("logtostderr").Value.Set("true")
 	//flag.Lookup("stderrthreshold").Value.Set("INFO")
 
+	fmt.Println("Creating Client")
 	secrets := loadSecrets()
 
 	cl, err := client.NewClient(client.Options{
@@ -28,6 +30,7 @@ func main() {
 	endpoint := instanceprofile.Endpoint{
 		Client: cl,
 	}
+	fmt.Println("----------------------------------------")
 
 	//request := models.InstanceprofileAddRequest{
 	//	InstanceProfileArn: secrets.InstanceprofileArn,
@@ -39,16 +42,24 @@ func main() {
 	//}
 
 	resp, err := endpoint.List()
-	fmt.Println(resp.InstanceProfiles[0].InstanceProfileArn)
-	fmt.Println(err==nil)
 	if err == nil {
 		for _, ip := range resp.InstanceProfiles {
 			fmt.Println(ip.InstanceProfileArn)
 		}
 	}else {
-		print(err)
+		fmt.Println(err)
 	}
+	fmt.Println("----------------------------------------")
 
+	request := models.InstanceprofileInfo{
+		 InstanceProfileArn: "arn:aws:iam::685319344187:instance-profile/tf.read-ip.databricks.canberrametro.cafrds.pro",
+	}
+	err = endpoint.Get(&request)
+	if err == nil {
+		fmt.Printf("Arn found: %s", request.InstanceProfileArn)
+	}else {
+		fmt.Println(err)
+	}
 
 }
 
