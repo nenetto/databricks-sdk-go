@@ -27,10 +27,24 @@ func (c *Endpoint) List() (*models.InstanceprofileListResponse, error) {
 	return &resp, nil
 }
 
+func (c *Endpoint) Exist(request *models.InstanceprofileInfo) bool {
+	found := false
+
+	resp, _ := c.List()
+
+
+	for _, ip := range resp.InstanceProfiles {
+		if ip.InstanceProfileArn == request.InstanceProfileArn {
+			found = true
+		}
+	}
+
+	return found
+}
+
 
 func (c *Endpoint) Add(request *models.InstanceprofileAddRequest) error {
-	responseBytes, err := c.Client.Query("POST", "instance-profiles/add", request)
-	print(responseBytes)
+	_, err := c.Client.Query("POST", "instance-profiles/add", request)
 	return err
 }
 
